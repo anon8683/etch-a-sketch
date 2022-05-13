@@ -10,24 +10,30 @@
   </head>
   <body>
     <header class="header-container">
-      <h2 class="header-title">Etch a sketch</h3>
+      <h2 class="header-title">Etch a Sketch</h3>
     </header>
     <main>
         <div class="buttons">
-            <div class="grid-size">
+          <div class="grid-size">
+            <div class="first-element"></div>
             <h5>Grid size</h5>
             <p id="grid-size"></p>
             <div class="slidecontainer">
               <input type="range" min="1" max="50" value="16" class="slider" id="myRange">
-              </div>
+            </div>
+          
+              
               <div class="color-picker-container">
-                <div class="color-text">Choose your color</div>
-              <input type="color" id="color-picker">
+                <div class="color-text">Brush color</div>
+                <input type="color" id="color-picker">
+            
+                <div class="color-text">Background color</div>
+                <input type="color" id="bgcolor-picker">
+
             </div>
-              <div class="color-text">Background color</div>
-              <input type="color" id="bgcolor-picker">
-              <button id="newSheet">Reset</button>
+            <button id="newSheet">Reset</button>
             </div>
+            
               
             </div>
           </div>
