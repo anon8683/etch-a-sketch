@@ -15,3 +15,13 @@ The user would input a number and the grid's colums and rows would dynamically c
 I then learned how to add a slider and color pickers to allow the user to change the the grid size and choose their color's. I learnt a lot in this project in regards to obtaining user inputs in various different ways. Overall it took me about 7 hours most of it researching and learning new things.
 
 Have fun drawing!
+
+## Future features:
+
+I plan to add more features in the future;
+
+- Shading
+- Lighten
+- Rainbow color selection
+- Fill color
+- Screenshot
