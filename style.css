@@ -29,7 +29,7 @@ main {
 }
 
 .div-box {
-  border: 0.1px solid rgba(0, 0, 0, 0.8);
+  border: 1px dotted rgba(179, 179, 179, 0.8);
 }
 
 .div-container {
