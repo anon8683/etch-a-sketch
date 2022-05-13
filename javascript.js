@@ -3,14 +3,20 @@ const divBox = document.querySelectorAll(".div-box");
 const slider = document.getElementById("myRange");
 const sliderDisplay = document.getElementById("grid-size");
 const colorPicker = document.getElementById("color-picker");
+const newButton = document.getElementById("newSheet");
 
 let number = 16;
-let color = "";
+let color = "black";
 
 // Adds listener to slider, runs func when slider changed
 slider.addEventListener("change", getSlider);
 colorPicker.addEventListener("change", getColor);
+newButton.addEventListener("click", newSheet);
 sliderDisplay.textContent = `${number}x${number}`;
+
+function newSheet() {
+  clearGrid(number);
+}
 
 // Gets the current value of slider and turns number into value
 function getSlider() {

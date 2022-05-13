@@ -48,6 +48,10 @@ main {
   margin-bottom: 50px;
 }
 
+.slider {
+  margin-bottom: 30px;
+}
+
 /* What do I need?
 Need a fixed box container 
 The divs must grow to fill that box equally and wrap */
