@@ -42,6 +42,12 @@ main {
   margin-right: 250px;
 }
 
+.color-picker-container {
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
 /* What do I need?
 Need a fixed box container 
 The divs must grow to fill that box equally and wrap */
