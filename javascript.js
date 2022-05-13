@@ -1,14 +1,26 @@
 const divContainer = document.querySelector(".div-container");
 const divBox = document.querySelectorAll(".div-box");
 const slider = document.getElementById("myRange");
-let number =
-  // User inputted number
+const sliderDisplay = document.getElementById("grid-size");
 
-  slider.addEventListener("change", getSlider);
+let number = 16;
 
+// Adds listener to slider, runs func when slider changed
+slider.addEventListener("change", getSlider);
+sliderDisplay.textContent = `${number}x${number}`;
+
+// Gets the current value of slider and turns number into value
 function getSlider() {
-  console.log(document.getElementById("myRange").value);
-  return document.getElementById("myRange").value;
+  number = document.getElementById("myRange").value;
+  sliderDisplay.textContent = `${number}x${number}`;
+  clearGrid(number);
+  return (number = document.getElementById("myRange").value);
+}
+
+function clearGrid(number) {
+  divContainer.replaceChildren();
+  divAppend(number * number);
+  modifyStyle(number);
 }
 
 // Adds divs based on number squared
