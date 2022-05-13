@@ -12,9 +12,9 @@ let color = "black";
 let backGroundColor = "white";
 
 // Adds listener to slider, runs func when slider changed
-slider.addEventListener("change", getSlider);
-colorPicker.addEventListener("change", getColor);
-backgroundColor.addEventListener("change", changeBackground);
+slider.addEventListener("input", getSlider);
+colorPicker.addEventListener("input", getColor);
+backgroundColor.addEventListener("input", changeBackground);
 
 newButton.addEventListener("click", newSheet);
 
