@@ -8,6 +8,7 @@ const newButton = document.getElementById("newSheet");
 const backGroundButton = document.getElementById("background");
 const rainbowButton = document.getElementById("rainbow");
 const gridButton = document.getElementById("gridToggle");
+const shadingButton = document.getElementById("shading");
 
 let number = 16;
 let color = "black";
@@ -15,6 +16,7 @@ let backGroundColor = "white";
 let colors = [];
 let rainbowMode = false;
 let grid = true;
+let shading = false;
 
 // Adds listener to slider, runs func when slider changed
 slider.addEventListener("input", getSlider);
@@ -23,6 +25,7 @@ backgroundColor.addEventListener("input", changeBackground);
 rainbowButton.addEventListener("click", rainbowTrue);
 newButton.addEventListener("click", newSheet);
 gridButton.addEventListener("click", gridToggle);
+shadingButton.addEventListener("click", shadingEnabled);
 
 sliderDisplay.textContent = `${number}x${number}`;
 
@@ -41,7 +44,8 @@ function getSlider() {
 
 function getColor() {
   color = document.getElementById("color-picker").value;
-  console.log(color);
+  rainbowMode = false;
+  rainbowButton.classList.remove("true");
   return color;
 }
 
@@ -58,11 +62,28 @@ function randomColor() {
   return;
 }
 
+function lightGreys() {
+  greys = ["#a3a2a0", "#b0afac", "#bfbfbd"];
+  color = greys[Math.floor(Math.random() * greys.length)];
+  return;
+}
+
+function shadingEnabled() {
+  if (shading === false) {
+    shading = true;
+    shadingButton.className = "true";
+  } else {
+    shading = false;
+    shadingButton.classList.remove("true");
+  }
+}
+
 // Removes all dom divs, then appends new number of divs and modifys grid column/row
 function clearGrid(number) {
   divContainer.replaceChildren();
   divAppend(number * number);
   modifyStyle(number);
+  grid = true;
 }
 
 // Adds our starting grid of 16x16 divs
@@ -77,6 +98,8 @@ function divAppend(number) {
     newDiv.addEventListener("mouseover", function (e) {
       if (rainbowMode === true) {
         newDiv.style.backgroundColor = randomColor();
+      } else if (shading === true) {
+        newDiv.style.backgroundColor = lightGreys();
       } else {
         color = getColor();
       }
