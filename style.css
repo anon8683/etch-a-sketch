@@ -93,7 +93,7 @@ h5 {
   grid-template-rows: repeat(16, 1fr);
   height: 600px;
   width: 600px;
-  border: 2px solid var(--light-grey);
+  border: 7px solid var(--light-grey);
   background-color: white;
   margin-right: 12rem;
 }
@@ -107,7 +107,6 @@ h5 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: 200px;
   justify-content: space-between;
 }
 .color-text {
@@ -128,7 +127,17 @@ footer {
   text-shadow: 1px 1px var(--light-grey);
 }
 
-input[type="color"] {
+#rainbow {
+  background-color: var(--salmon);
+  width: 200px;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+#rainbow.true {
+  background-color: green;
+  width: 200px;
+  font-weight: bold;
+  margin-bottom: 0px;
 }
 
 #color-picker,
@@ -138,6 +147,7 @@ input[type="color"] {
   border-radius: 1px;
   width: 60px;
   height: 30px;
+  justify-items: center;
 }
 input[type="color"] {
   -webkit-appearance: none;
@@ -150,7 +160,10 @@ input[type="color"]::-webkit-color-swatch {
   border: none;
 }
 
-#newSheet {
+#newSheet,
+#lighten,
+#darken,
+#gridToggle {
   background-color: var(--salmon);
   width: 200px;
   font-weight: bold;

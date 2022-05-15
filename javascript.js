@@ -6,16 +6,19 @@ const colorPicker = document.getElementById("color-picker");
 const backgroundColor = document.getElementById("bgcolor-picker");
 const newButton = document.getElementById("newSheet");
 const backGroundButton = document.getElementById("background");
+const rainbowButton = document.getElementById("rainbow");
 
 let number = 16;
 let color = "black";
 let backGroundColor = "white";
+let colors = [];
+let rainbowMode = false;
 
 // Adds listener to slider, runs func when slider changed
 slider.addEventListener("input", getSlider);
 colorPicker.addEventListener("input", getColor);
 backgroundColor.addEventListener("input", changeBackground);
-
+rainbowButton.addEventListener("click", rainbowTrue);
 newButton.addEventListener("click", newSheet);
 
 sliderDisplay.textContent = `${number}x${number}`;
@@ -35,6 +38,7 @@ function getSlider() {
 
 function getColor() {
   color = document.getElementById("color-picker").value;
+  console.log(color);
   return color;
 }
 
@@ -42,6 +46,12 @@ function changeBackground() {
   backGroundColor = document.getElementById("bgcolor-picker").value;
   divContainer.style.backgroundColor = backGroundColor;
   return backGroundColor;
+}
+
+function randomColor() {
+  colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+  color = colors[Math.floor(Math.random() * colors.length)];
+  return;
 }
 
 // Removes all dom divs, then appends new number of divs and modifys grid column/row
@@ -60,9 +70,24 @@ function divAppend(number) {
     newDiv.className = "div-box";
     divContainer.append(newDiv);
     newDiv.addEventListener("mouseover", function (e) {
+      if (rainbowMode === true) {
+        newDiv.style.backgroundColor = randomColor();
+      } else {
+        color = getColor();
+      }
       newDiv.style.backgroundColor = color;
     });
   }
+}
+function rainbowTrue() {
+  if (rainbowMode === false) {
+    rainbowMode = true;
+    rainbowButton.className = "true";
+  } else if (rainbowMode === true) {
+    rainbowMode = false;
+    rainbowButton.classList.remove("true");
+  }
+  console.log(rainbowMode);
 }
 
 modifyStyle(number);
