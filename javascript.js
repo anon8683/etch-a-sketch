@@ -7,12 +7,14 @@ const backgroundColor = document.getElementById("bgcolor-picker");
 const newButton = document.getElementById("newSheet");
 const backGroundButton = document.getElementById("background");
 const rainbowButton = document.getElementById("rainbow");
+const gridButton = document.getElementById("gridToggle");
 
 let number = 16;
 let color = "black";
 let backGroundColor = "white";
 let colors = [];
 let rainbowMode = false;
+let grid = true;
 
 // Adds listener to slider, runs func when slider changed
 slider.addEventListener("input", getSlider);
@@ -20,6 +22,7 @@ colorPicker.addEventListener("input", getColor);
 backgroundColor.addEventListener("input", changeBackground);
 rainbowButton.addEventListener("click", rainbowTrue);
 newButton.addEventListener("click", newSheet);
+gridButton.addEventListener("click", gridToggle);
 
 sliderDisplay.textContent = `${number}x${number}`;
 
@@ -48,6 +51,7 @@ function changeBackground() {
   return backGroundColor;
 }
 
+// Sets color to a random color from a list
 function randomColor() {
   colors = ["red", "blue", "green", "yellow", "purple", "orange"];
   color = colors[Math.floor(Math.random() * colors.length)];
@@ -69,6 +73,7 @@ function divAppend(number) {
     const newDiv = document.createElement("div");
     newDiv.className = "div-box";
     divContainer.append(newDiv);
+
     newDiv.addEventListener("mouseover", function (e) {
       if (rainbowMode === true) {
         newDiv.style.backgroundColor = randomColor();
@@ -79,6 +84,7 @@ function divAppend(number) {
     });
   }
 }
+
 function rainbowTrue() {
   if (rainbowMode === false) {
     rainbowMode = true;
@@ -95,4 +101,31 @@ modifyStyle(number);
 function modifyStyle(number) {
   divContainer.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
   divContainer.style.gridTemplateRows = `repeat(${number}, 1fr)`;
+}
+
+function gridToggle() {
+  if (grid === true) {
+    grid = false;
+    gridButton.classList.remove("true");
+    removeBorder();
+  } else if (grid === false) {
+    grid = true;
+    gridButton.className = "true";
+    addBorder();
+  }
+  console.log(grid);
+}
+
+function removeBorder() {
+  cells = document.querySelectorAll(".div-box");
+  cells.forEach(function (item) {
+    item.className = "noBorder";
+  });
+}
+
+function addBorder() {
+  cells = document.querySelectorAll(".noBorder");
+  cells.forEach(function (item) {
+    item.className = "div-box";
+  });
 }
