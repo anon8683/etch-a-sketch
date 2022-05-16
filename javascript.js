@@ -17,7 +17,7 @@ let colors = [];
 let rainbowMode = false;
 let grid = true;
 
-// Adds listener to slider, runs func when slider changed
+// Event listeners
 slider.addEventListener("input", getSlider);
 colorPicker.addEventListener("input", getColor);
 backgroundColor.addEventListener("input", changeBackground);
@@ -25,8 +25,10 @@ rainbowButton.addEventListener("click", rainbowTrue);
 newButton.addEventListener("click", newSheet);
 gridButton.addEventListener("click", gridToggle);
 
+// Displays our grid size
 sliderDisplay.textContent = `${number}x${number}`;
 
+// Resets our divs to no color
 function newSheet() {
   clearGrid(number);
 }
@@ -39,6 +41,7 @@ function getSlider() {
   return (number = document.getElementById("myRange").value);
 }
 
+// Retreives hex color value from the slider
 function getColor() {
   color = document.getElementById("color-picker").value;
   rainbowMode = false;
@@ -46,6 +49,7 @@ function getColor() {
   return color;
 }
 
+//  Background color changer
 function changeBackground() {
   backGroundColor = document.getElementById("bgcolor-picker").value;
   divContainer.style.backgroundColor = backGroundColor;
@@ -58,12 +62,14 @@ function randomColor() {
   color = colors[Math.floor(Math.random() * colors.length)];
   return;
 }
-
-function lightGreys() {
-  greys = ["#a3a2a0", "#b0afac", "#bfbfbd"];
-  color = greys[Math.floor(Math.random() * greys.length)];
-  return;
-}
+// --------------------------------------------------------
+// Greys for shading, will add in future
+// function lightGreys() {
+//   greys = ["#a3a2a0", "#b0afac", "#bfbfbd"];
+//   color = greys[Math.floor(Math.random() * greys.length)];
+//   return;
+// }
+// --------------------------------------------------------
 
 // Removes all dom divs, then appends new number of divs and modifys grid column/row
 function clearGrid(number) {
@@ -82,6 +88,7 @@ function divAppend(number) {
     newDiv.className = "div-box";
     divContainer.append(newDiv);
 
+    // Hover event for cells, paints them if mosueover
     newDiv.addEventListener("mouseover", function (e) {
       if (rainbowMode === true) {
         newDiv.style.backgroundColor = randomColor();
@@ -93,6 +100,7 @@ function divAppend(number) {
   }
 }
 
+// Changes rainbowmode to true/false, adds and removes class for css
 function rainbowTrue() {
   if (rainbowMode === false) {
     rainbowMode = true;
@@ -104,21 +112,14 @@ function rainbowTrue() {
   console.log(rainbowMode);
 }
 
-function shadingTrue() {
-  if (shading === false) {
-    shading = true;
-  } else {
-    shading = false;
-  }
-}
-
+// Changes rows and colums of the grid with value from slider
 modifyStyle(number);
-// Changes rows and colums of the grid with user number
 function modifyStyle(number) {
   divContainer.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
   divContainer.style.gridTemplateRows = `repeat(${number}, 1fr)`;
 }
 
+// Sets gridToggle to true/false, adds and removes class for css
 function gridToggle() {
   if (grid === true) {
     grid = false;
@@ -132,6 +133,7 @@ function gridToggle() {
   console.log(grid);
 }
 
+// Functions to add and remove border from cells for gridToggle
 function removeBorder() {
   cells = document.querySelectorAll(".div-box");
   cells.forEach(function (item) {
