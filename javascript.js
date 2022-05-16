@@ -16,7 +16,6 @@ let backGroundColor = "white";
 let colors = [];
 let rainbowMode = false;
 let grid = true;
-let shading = false;
 
 // Adds listener to slider, runs func when slider changed
 slider.addEventListener("input", getSlider);
@@ -25,13 +24,11 @@ backgroundColor.addEventListener("input", changeBackground);
 rainbowButton.addEventListener("click", rainbowTrue);
 newButton.addEventListener("click", newSheet);
 gridButton.addEventListener("click", gridToggle);
-shadingButton.addEventListener("click", shadingEnabled);
 
 sliderDisplay.textContent = `${number}x${number}`;
 
 function newSheet() {
   clearGrid(number);
-  divContainer.style.backgroundColor = "white";
 }
 
 // Gets the current value of slider and turns number into value
@@ -68,16 +65,6 @@ function lightGreys() {
   return;
 }
 
-function shadingEnabled() {
-  if (shading === false) {
-    shading = true;
-    shadingButton.className = "true";
-  } else {
-    shading = false;
-    shadingButton.classList.remove("true");
-  }
-}
-
 // Removes all dom divs, then appends new number of divs and modifys grid column/row
 function clearGrid(number) {
   divContainer.replaceChildren();
@@ -98,8 +85,6 @@ function divAppend(number) {
     newDiv.addEventListener("mouseover", function (e) {
       if (rainbowMode === true) {
         newDiv.style.backgroundColor = randomColor();
-      } else if (shading === true) {
-        newDiv.style.backgroundColor = lightGreys();
       } else {
         color = getColor();
       }
@@ -119,8 +104,16 @@ function rainbowTrue() {
   console.log(rainbowMode);
 }
 
+function shadingTrue() {
+  if (shading === false) {
+    shading = true;
+  } else {
+    shading = false;
+  }
+}
+
 modifyStyle(number);
-// Changes rows and colums with user number
+// Changes rows and colums of the grid with user number
 function modifyStyle(number) {
   divContainer.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
   divContainer.style.gridTemplateRows = `repeat(${number}, 1fr)`;
